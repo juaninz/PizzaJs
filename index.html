@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
+    <title>Pepperoni's Pizza</title>
+  </head>
+  <body>
+    <header id="header">
+      <nav id="navbar">
+        <ul class="menu">
+          <li>
+            <a href="#" class="logo-link"
+              ><img
+                src="./imagenes/logoPizza.png"
+                alt="logoPizza"
+                class="logo"
+            /></a>
+          </li>
+          <div class="container-items">
+            <li class="item item-link"><a href="#catalogo">Catálogo</a></li>
+            <li class="item item-link">
+              <a href="#contacto">Contacto</a>
+            </li>
+            <li class="item">
+              <a href="">
+                <i class="fa-solid fa-cart-shopping cart"></i>
+                <span id="totalItems"></span>
+              </a>
+            </li>
+          </div>
+          <div class="btn__container">
+            <a href="#"><i class="fa-solid fa-bars"></i></a>
+          </div>
+        </ul>
+      </nav>
+    </header>
+    <main class="main">
+      <section class="cabecera">
+        <div class="infoCabecera">
+          <h1>Pepperoni's</h1>
+          <p>El mejor sabor a tu casa!</p>
+        </div>
+        <img class="imgCabecera" src="./imagenes/pizza.jpg" alt="imgCabecera" />
+      </section>
+      <section class="search">
+        <div class="inputContainer">
+          <h2>Busca tu pizza </h2>
+          <h3>Ingresa su ID</h3>
+          <form action="">
+            <input class="inputSearch" type="number" name="" id="inputSearch" />
+            <button class="inputBtn">Buscar</button>
+          </form>
+        </div>
+        <div class="cardSearch">
+          <h2 class="nombre"></h2>
+          <h4 class="precio"></h4>
+        </div>
+      </section>
+      <section class="carro">
+        <div class="cartContainer"></div>
+      </section>
+      <section class="catalogo" id="catalogo">
+        <div class="cardCatalogo">
+          <img class="imgCatalogo" src="./imagenes/muzza.jpg" alt="" />
+          <span class="numID">#1</span>
+          <h2>Muzzarella</h2>
+          <h4>$1100</h4>
+          <a href="#"
+            ><button
+              data-img="./imagenes/muzza.jpg.jpg"
+              data-name="Muzzarella"
+              data-price="1100"
+              data-count="1"
+              class="btnCatalogo"
+              data-id="1"
+            >
+              Agregar
+            </button></a
+          >
+        </div>
+        <div class="cardCatalogo">
+          <img class="imgCatalogo" src="./imagenes/calabresa.jpg" alt="" />
+          <span class="numID">#2</span>
+          <h2>Calabresa</h2>
+          <h4>$1350</h4>
+          <a href="#"
+            ><button
+              data-img="./imagenes/calabresa.jpg"
+              data-name="Calabresa"
+              data-price="1350"
+              data-count="1"
+              class="btnCatalogo"
+              data-id="2"
+            >
+              Agregar
+            </button></a
+          >
+        </div>
+        <div class="cardCatalogo">
+          <img class="imgCatalogo" src="./imagenes/fugazeta.jpg" alt="" />
+          <span class="numID">#3</span>
+          <h2>Fugazzeta</h2>
+          <h4>$1200</h4>
+          <a href="#"
+            ><button
+              data-img="./imagenes/fugazeta.jpg"
+              data-name="Fugazzeta"
+              data-price="1200"
+              data-count="1"
+              class="btnCatalogo"
+              data-id="3"
+            >
+              Agregar
+            </button></a
+          >
+        </div>
+        <div class="cardCatalogo">
+          <img class="imgCatalogo" src="./imagenes/especial.jpg" alt="" />
+          <span class="numID">#4</span>
+          <h2>Especial</h2>
+          <h4>$1300</h4>
+          <a href="#"
+            ><button
+              data-img="./imagenes/especial.jpg"
+              data-name="Especial"
+              data-price="1300"
+              data-count="1"
+              class="btnCatalogo"
+              data-id="4"
+            >
+              Agregar
+            </button></a
+          >
+        </div>
+        <div class="cardCatalogo">
+          <img class="imgCatalogo" src="./imagenes/palmitos.jpg" alt="" />
+          <span class="numID">#5</span>
+          <h2>Palmitos</h2>
+          <h4>$1300</h4>
+          <a href="#"
+            ><button
+              data-img="./imagenes/palmitos.jpg"
+              data-name="Palmitos"
+              data-price="1300"
+              data-count="1"
+              class="btnCatalogo"
+              data-id="5"
+            >
+              Agregar
+            </button></a
+          >
+        </div>
+        <div class="cardCatalogo">
+          <img class="imgCatalogo" src="./imagenes/rucula.jpg" alt="" />
+          <span class="numID">#6</span>
+          <h2>Rúcula</h2>
+          <h4>$1300</h4>
+          <a href="#"
+            ><button
+              data-img="./imagenes/rucula.jpg"
+              data-name="Rucula"
+              data-price="1300"
+              data-count="1"
+              class="btnCatalogo"
+              data-id="6"
+            >
+              Agregar
+            </button></a
+          >
+        </div>
+      </section>
+      <!-- <section class="carrito" id="carrito">
+        <h2>Tu pedido:</h2>
+        <div class="carrito__Container">No agregaste nada al pedido</div>
+        <div class="total__items">
+          <div class="total__price">
+            <p class="total">Total:</p>
+            $
+            <span id="totalProducts"></span>
+          </div>
+          <button class="cart__btn">Finalizar Compra</button>
+        </div>
+      </section> -->
+      <section class="contacto">
+        <h2>Comunicate con nosotros!</h2>
+        <input type="text" placeholder="Ingresa tu nombre" />
+        <input
+          type="email"
+          name="mail"
+          id="mail"
+          placeholder="Ingresa tu email"
+        />
+      </section>
+      <footer class="footer"><p>Juan Nuñez</p></footer>  
+    </main>
+    <script src="main.js"></script>
+  </body>
+</html>
