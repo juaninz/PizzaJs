@@ -403,6 +403,22 @@
             cursor: pointer;
             text-transform: uppercase;
           }
+
+          #borrarTodo{
+            background: var(--amarillo);
+            margin-top: 1rem;
+            border: none;
+            font-family: "Finlandica", sans-serif;
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 1rem;
+            -webkit-border-radius: 1rem;
+            -moz-border-radius: 1rem;
+            -ms-border-radius: 1rem;
+            -o-border-radius: 1rem;
+            cursor: pointer;
+            text-transform: uppercase;
+          }
           
           .total__price {
             display: flex;
