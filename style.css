@@ -794,6 +794,10 @@
         font-weight: var(--medium);
       }
       
+      .cart__quitar{
+        font-size: 2rem;
+        cursor: pointer;
+      }
       .total__items {
         display: flex;
         flex-direction: column;
@@ -806,6 +810,24 @@
         max-width: 800px;
       }
       
+    #borrarTodo{
+        background: var(--amarillo);
+        margin-top: 1rem;
+        border: none;
+        font-family: "Finlandica", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 400;
+        padding: 1rem 2rem;
+        border-radius: 1rem;
+        -webkit-border-radius: 1rem;
+        -moz-border-radius: 1rem;
+        -ms-border-radius: 1rem;
+        -o-border-radius: 1rem;
+        cursor: pointer;
+        width: 400px;
+        text-transform: uppercase;
+      }
+
       .cart__btn {
         background: var(--amarillo);
         border: none;
@@ -822,6 +844,7 @@
         width: 400px;
         text-transform: uppercase;
       }
+      
       
       .total__price {
         display: flex;

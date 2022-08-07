@@ -5,10 +5,11 @@ const item = document.querySelectorAll(".item");
 const cartList = document.querySelector(".cartContainer");
 const catalogo = document.querySelector(".catalogo");
 const header = document.querySelector(".header");
-const cartCont = document.querySelector(".carrito__Container");
 const btnCompra = document.querySelectorAll(".btnCatalogo");
+//Quitar elemento carrito
+const btnQuitar = document.getElementsByClassName('cart__quitar')
+const btnBorrar = document.getElementById('borrarTodo')
 
-const borrarItemCart = document.querySelectorAll(".borrarCart");
 
 // Contador del carrito y el total
 const totalItems = document.getElementById('totalItems');
@@ -19,7 +20,6 @@ const cart = document.getElementById('cart');
 // Llamamos al navbar
 const navbar = document.getElementById('navbar');
 
-console.log(totalItems)
 const Pizzas = [{
     id: 1,
     nombre: "Muzzarella",
@@ -176,9 +176,6 @@ const totalPrice = () => {
 const handleAddProduct = (e) => {
   // Cancelamos el comportamiento por defecto del boton
   e.preventDefault();
-  //   console.log('a ver que paso');
-
-  //
   if (
     !e.target.classList.contains('btnCatalogo') ||
     e.target.classList.contains('disabled')
@@ -213,7 +210,7 @@ const handleAddProduct = (e) => {
   };
 
   products.push(newProduct);
-  console.log(newProduct);
+  // console.log(newProduct);
   // crear una funcion que setee el contador de los items
   setCount();
   // crear una funcion que haga el total del precio
@@ -237,14 +234,38 @@ const productList = () => {
           </div>
           <p class="cart__title">${product.name} x ${product.count} c/u $ ${product.price}</p>
           <span class="cart__price">$${product.price * product.count}</span>
+          <span class="cart__quitar"> X </span>
         </div>
       </div>
         `;
     })
     .join('');
+
 };
 
 // Listener al boton de comprar
 btnCompra.forEach((item) => {
   item.addEventListener('click', handleAddProduct);
 });
+
+// //funcion para borrar todo
+// function borrarCarrito(){
+//   let products = 0;
+//   // crear una funcion que setee el contador de los items
+//   setCount();
+//   // crear una funcion que haga el total del precio
+//   totalPrice();
+//   // crear una funcion que pinte el html
+//   productList();
+// };
+
+//btn borrar todo
+btnBorrar.addEventListener('click',() =>{
+  products = [];
+  // crear una funcion que setee el contador de los items
+  setCount();
+  // crear una funcion que haga el total del precio
+  totalPrice();
+  // crear una funcion que pinte el html
+  productList();
+})
