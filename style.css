@@ -428,7 +428,7 @@
           }
     /*contacto*/
     .contacto {
-        width: 100%;
+        width: 90%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -439,14 +439,25 @@
         border-radius: 0.8rem;
         gap: 1rem;
         color: var(--blanco);
-        text-align: center;
+        margin: 1rem;
     }
 
     .contacto input {
-        width: 16rem;
+        width: 20rem;
         height: 2rem;
         border-radius: 0.8rem;
         text-align: center;
+    }
+
+    #enviar{
+       cursor: pointer;
+       color: var(--blanco);
+       background-color: var(--negro);
+    }
+
+    #enviar:hover{
+       background-color: var(--amarillo);
+
     }
 
 
@@ -928,11 +939,14 @@
 
      #enviar{
         cursor: pointer;
+        color: var(--blanco);
+        background-color: var(--negro);
      }
 
      #enviar:hover{
         background-color: var(--amarillo);
-
+        color: var(--negro);
+        
      }
 
  }
