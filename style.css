@@ -905,7 +905,7 @@
 
 
      .contacto {
-         width: 100%;
+         width: 90%;
          display: flex;
          justify-content: center;
          align-items: center;
@@ -916,6 +916,7 @@
          border-radius: 0.8rem;
          gap: 1rem;
          color: var(--blanco);
+         margin: 1rem;
      }
 
      .contacto input {
@@ -923,6 +924,15 @@
          height: 2rem;
          border-radius: 0.8rem;
          text-align: center;
+     }
+
+     #enviar{
+        cursor: pointer;
+     }
+
+     #enviar:hover{
+        background-color: var(--amarillo);
+
      }
 
  }
@@ -934,3 +944,13 @@
  .show {
      display: flex;
  }
+
+ /* Errores formulario */
+ .errores {
+    color: red;
+  }
+  
+  .ok {
+    color: greenyellow;
+  }
+  

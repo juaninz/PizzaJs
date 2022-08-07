@@ -10,7 +10,6 @@ const btnCompra = document.querySelectorAll(".btnCatalogo");
 const btnQuitar = document.getElementsByClassName('cart__quitar')
 const btnBorrar = document.getElementById('borrarTodo')
 
-
 // Contador del carrito y el total
 const totalItems = document.getElementById('totalItems');
 const totalProducts = document.getElementById('totalProducts');
@@ -19,6 +18,13 @@ const totalProducts = document.getElementById('totalProducts');
 const cart = document.getElementById('cart');
 // Llamamos al navbar
 const navbar = document.getElementById('navbar');
+
+//llamamos elementos formulario
+const nombre = document.getElementById('name');
+const email = document.getElementById('email');
+const form = document.getElementById('form');
+const parrafo = document.getElementById('errores');
+const phone = document.getElementById('phone');
 
 const Pizzas = [{
     id: 1,
@@ -269,3 +275,56 @@ btnBorrar.addEventListener('click',() =>{
   // crear una funcion que pinte el html
   productList();
 })
+
+//formulario
+
+// Escuchador de eventos
+form.addEventListener('submit', (e) => {
+  // Prevenimos por defecto el comportamiento del submit
+  e.preventDefault();
+
+  //   Crear una variable para almacenar errores
+  let error = '';
+  //   Creaoms una variable de enviar para controlar si tenemos errores
+  let enviar = false;
+  // Creamos la variable de regexEmail para validar el email
+  let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+
+  //   Validemos el nombre de usuario
+  //   Si el nombre tiene menos de 6 caracteres, quiero que muestre un error
+  if (nombre.value.length < 3) {
+    error += `El nombre tiene menos de 3 caracteres <br>`;
+    enviar = true;
+  }
+
+  //   Validemos el email
+  //
+  if (!regexEmail.test(email.value)) {
+    error += `El email no es valido <br>`;
+    enviar = true;
+  }
+
+  //   * Validamos el telefono
+  if (!validatePhone(phone.value)) {
+    error += `El telefono no es valido, debe tener 10 numeros <br>`;
+    enviar = true;
+  }
+
+  //   Si enviar es true mostramos los errores
+  if (enviar) {
+    parrafo.classList.add('errores');
+    parrafo.innerHTML = error;
+  } else {
+    parrafo.classList.add('ok');
+    parrafo.innerHTML = 'Enviado';
+  }
+});
+
+
+// Crear una funcion que valide el numero de telefono
+const validatePhone = (phone) => {
+  // Expresion regular para el telefono
+  let re = /^\d{10}$/;
+  //   Retorna true si la expresion coincide
+  return re.test(phone);
+};
