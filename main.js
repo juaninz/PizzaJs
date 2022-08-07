@@ -7,9 +7,17 @@ const catalogo = document.querySelector(".catalogo");
 const header = document.querySelector(".header");
 const cartCont = document.querySelector(".carrito__Container");
 const btnCompra = document.querySelectorAll(".btnCatalogo");
-const totalItems = document.querySelector("#totalItems");
-const totalProducts = document.querySelector("#totalProducts");
+
 const borrarItemCart = document.querySelectorAll(".borrarCart");
+
+// Contador del carrito y el total
+const totalItems = document.getElementById('totalItems');
+const totalProducts = document.getElementById('totalProducts');
+
+// Div del carrito
+const cart = document.getElementById('cart');
+// Llamamos al navbar
+const navbar = document.getElementById('navbar');
 
 console.log(totalItems)
 const Pizzas = [{
@@ -56,7 +64,20 @@ const Pizzas = [{
   },
 ]
 
+// Mostrar/Ocultar menu al scrollear
+let ultimoScrollTop;
 
+window.addEventListener('scroll', () => {
+  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  // console.log(`el scrolltop es ${scrollTop}`);
+  // console.log(`el ultimo scroll es ${ultimoScrollTop}`);
+  if (scrollTop > ultimoScrollTop) {
+    navbar.style.top = '-200px';
+  } else {
+    navbar.style.top = '0';
+  }
+  ultimoScrollTop = scrollTop;
+});
 
 // Mostrar menu (toggle)
 menu.addEventListener('click', () => {
@@ -119,76 +140,111 @@ function createHTML() {
   }
 }
 
+
 //-----------------------------Intento carrito compras ----------
-// let products = [];
-// const setCount = () => {
-//   let totalCount = 0;
-//   for (let item in products) {
-//     totalCount += Number(products[item].count);
-//   }
-//   totalItems.innerText = totalCount;
-//   return totalCount;
-// };
+// Arrancamos con el carrito
 
-// const totalPrice = () => {
-//   let totalCart = 0;
-//   for (let item in products) {
-//     totalCart += Number(products[item].precio * products[item].count);
-//   }
-//   totalProducts.innerText = totalCart;
-//   return totalCart;
-// };
+// Creamos un array vacio para los productos
+let products = [];
 
-// const handleAddProduct = (e) => {
-//   e.preventDefault();
-//   if (
-//     !e.target.classList.contains("btnCatalogo") ||
-//     e.target.classList.contains("disabled")
-//   ) {
-//     return;
-//   }
-//   for (let item in products) {
-//     if (products[item].nombre === e.target.dataset.name) {
-//       products[item].count++;
-//       setCount();
-//       totalPrice();
-//       productList();
-//       return;
-//     }
-//   }
-//   const newPizza = {
-//     id: e.target.dataset.id,
-//     nombre: e.target.dataset.name,
-//     precio: e.target.dataset.price,
-//     img: e.target.dataset.img,
-//     count: e.target.dataset.count,
-//   };
-//   products.push(newPizza);
-//   setCount();
-//   totalPrice();
-//   productList();
-// };
+// Funcion para actualizar el contador de productos
+const setCount = () => {
+  let totalCount = 0;
 
-// const productList = () => {
-//   cartCont.innerHTML = products
-//     .map((product) => {
-//       return `<div class="cardCatalogo">
-//           <img class="imgCatalogo" src="${product.img}" alt="" />
-//           <span class="numID">#${product.id}</span>
-//           <h2>${product.nombre}</h2>
-//           <h4>c/u $${product.precio}</h4>
-//           <span class="cart__price">$${product.price * product.count}</span>
-//           <span class="borrarCart">X</span>
+  //   Recorremos el array y sumamos el contador
+  for (let item in products) {
+    totalCount += Number(products[item].count);
+  }
 
-//         </div>`;
-//     })
-//     .join("");
-// };
+  //   Actualizar el contador que esta en el span del carrito
+  totalItems.innerText = totalCount;
+  return totalCount;
+};
 
-// btnCompra.forEach((item) => {
-//   item.addEventListener("click", handleAddProduct);
-// });
+const totalPrice = () => {
+  let totalCart = 0;
 
-// borrarItemCart.addEventListener("click", () => {
-//   borrarItemCart.parentElement.remove();
-// });
+  //   Reccorrer el array para hacer el total
+  for (let item in products) {
+    totalCart += Number(products[item].price * products[item].count);
+  }
+
+  totalProducts.innerText = totalCart;
+  return totalCart;
+};
+
+const handleAddProduct = (e) => {
+  // Cancelamos el comportamiento por defecto del boton
+  e.preventDefault();
+  //   console.log('a ver que paso');
+
+  //
+  if (
+    !e.target.classList.contains('btnCatalogo') ||
+    e.target.classList.contains('disabled')
+  ) {
+    return;
+  }
+
+  //   Tenemos que recorrer el array de productos
+  for (let item in products) {
+    // Si el name del producto ews igual al target.dataset.name que se esta agregando
+    if (products[item].name === e.target.dataset.name) {
+      // Incrementemos el contador del producto
+      products[item].count++;
+      // Llamamos a la funcion que actualiza el contador
+      setCount();
+      //   Actualizar en el div carrito
+      // products[item].price * products[item].count;
+      //   Ejecutamos el total del carrito
+      totalPrice();
+      // Ejecutamos la funcion que pinta para que actualice el carrito
+      productList();
+      return;
+    }
+  }
+
+  //   Guardamos los target de los data
+  const newProduct = {
+    img: e.target.dataset.img,
+    name: e.target.dataset.name,
+    price: e.target.dataset.price,
+    count: e.target.dataset.count,
+  };
+
+  products.push(newProduct);
+  console.log(newProduct);
+  // crear una funcion que setee el contador de los items
+  setCount();
+  // crear una funcion que haga el total del precio
+  totalPrice();
+  // crear una funcion que pinte el html
+  productList();
+};
+
+const productList = () => {
+  cart.innerHTML = products
+    .map((product) => {
+      return `
+    <div class="cart__item">
+        <div class="cart__item--content">
+        <div>
+            <img
+                src="${product.img}"
+                alt="pizza"
+                class="item-img"
+            />
+          </div>
+          <p class="cart__title">${product.name} x ${product.count} c/u $ ${product.price}</p>
+          <span class="cart__price">$${product.price * product.count}</span>
+        </div>
+      </div>
+        `;
+    })
+    .join('');
+};
+
+// Listener al boton de comprar
+btnCompra.forEach((item) => {
+  item.addEventListener('click', handleAddProduct);
+});
